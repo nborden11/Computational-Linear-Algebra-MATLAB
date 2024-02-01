@@ -3,8 +3,8 @@ function [name, ufid, ...
           x4, x5, x6, x7, x8, ...
           F1, F2, E, m, n, E1, E2] = Exercise1()
     % --- Name & UFID --- %
-    name = "Nicholas Borden";
-    ufid = 46223988;
+    name = "";
+    ufid = 0;
 
     % --- Part A [10 Points] --- %
     A = [1 2 3; -4 -5 -6; 7 8 9];
