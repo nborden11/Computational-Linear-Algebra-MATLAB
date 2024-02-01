@@ -5,8 +5,8 @@ function [name, ufid, ...
           example_A2, example_b2, example_type2, ...
           example_A3, example_b3, example_type3] = Exercise3()
     % --- Name & UFID --- %
-    name = "Nicholas Borden";
-    ufid = 46223988;
+    name = "";
+    ufid = 0;
 
     % --- Part A: Underdetermined Systems [10 Points] --- %
     bA = randi([-7,7],2,1);
