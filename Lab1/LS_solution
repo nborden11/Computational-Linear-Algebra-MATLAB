@@ -1,7 +1,7 @@
 function [system_type, name, ufid] = LS_solution(n, A, Ab)
     % --- Name & UFID --- %
-    name = "Nicholas Borden";
-    ufid = 46223988;
+    name = "";
+    ufid = ;
     
     % (Purpose of function is to determine whether system Ax = b is consistent with one solution, consistent with infinite solutions, or inconsistent)
     % n = (number of variables in system)
