@@ -1,0 +1,42 @@
+function [name, ufid, ...
+    A1, A2, A3, dep_A1, dep_A2, dep_A3, ...
+    B1, B2, B3, dep_B1, dep_B2, dep_B3, ...
+    example_B, dep_B, example_C, dep_C] = Exercise1()
+    % --- Name & UFID --- %
+    name = "";
+    ufid = 123;
+
+    % --- Part A [10 Points] --- %
+    % (1) m < n
+    A1 = randi([-7,7],3,6);
+    A2 = randi([-7,7],3,6);
+    A3 = randi([-7,7],3,6);
+
+    dep_A1 = dependence(A1);
+    dep_A2 = dependence(A2);
+    dep_A3 = dependence(A3);
+
+    % (2) m > n
+    B1 = randi([-7,7],6,3);
+    B2 = randi([-7,7],6,3);
+    B3 = randi([-7,7],6,3);
+
+    dep_B1 = dependence(B1);
+    dep_B2 = dependence(B2);
+    dep_B3 = dependence(B3);
+
+    % --- Part B [10 Points] --- %
+    % The columns of any 3x6 matrix are always linearly dependent because
+    % there are more vectors than there are entries in each vector
+
+    example_B = NaN;
+    dep_B = NaN;
+
+    % --- Part C [10 Points] --- %
+    % The columns of any 3x6 matrix are NOT always linearly independent
+    % because it is possible for one column to be a linear combination of
+    % the others as illustrated in the example below
+
+    example_C = [1, 2, 3; 4, 5, 9; 6, 7, 13; 8, 9, 17; 10, 11, 21; 12, 13, 25];
+    dep_C = dependence(example_C);
+end
