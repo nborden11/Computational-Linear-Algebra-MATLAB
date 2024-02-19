@@ -1,0 +1,56 @@
+function [name, ufid, ...
+    transform_A1, transform_A2, transform_A3, ...
+    transform_B1, transform_B2, transform_B3, ...
+    C1, C2, C3, transform_C1, transform_C2, transform_C3, ...
+    example_neither, transform_neither] = Exercise2(A1, A2, A3, B1, B2, B3)
+    % --- Name & UFID --- %
+    name = "Nicholas Borden";
+    ufid = 46223988;
+
+    % --- Part A (see transformation.m) [10 Points] --- %
+
+    % --- Part B [10 Points] --- %
+    transform_A1 = transformation(A1);
+    transform_A2 = transformation(A2);
+    transform_A3 = transformation(A3);
+
+    transform_B1 = transformation(B1);
+    transform_B2 = transformation(B2);
+    transform_B3 = transformation(B3);
+
+    C1 = randi([-7,7],3,3);
+    C2 = randi([-7,7],3,3);
+    C3 = randi([-7,7],3,3);
+
+    transform_C1 = transformation(C1);
+    transform_C2 = transformation(C2);
+    transform_C3 = transformation(C3);
+
+    % --- Part C [10 Points] --- %
+
+    % (1) When m < n, a transformation T(x) = Ax 
+    % Cannot be one-to-one because there are more variables than equations
+    % which means there will be at least one free variable and the solution
+    % will not be unique
+
+    % (2) When m > n, a transformation T(x) = Ax 
+    % Cannot be onto because the column vectors can't span entire codomain
+    % so there will not be a solution for each b
+
+    % (3) When m = n, a transformation T(x) = Ax 
+    % T can be neither onto or one-to-one if some of the columns of A are
+    % linearly dependent. This would fail to span the space and map
+    % multiple domain vectors to the same codomain. 
+
+    example_neither = [1, 2, 3; 2, 4, 6; 3, 6, 9]
+    transform_neither = transformation(example_neither);
+
+    % (4) When m = n, a transformation T(x) = Ax 
+    % It is not possible for a linear transformation to be onto and not
+    % one-to-one or one-to-one and not onto when a matrix is square 
+    % because their properties are interconnected. If you have enough
+    % columns to be one-to-one, you have a solution for each b in the
+    % codomain. Inversely, if you have a solution for each b in the 
+    % codomain (onto), it implies each column is unqiue and it is
+    % one-to-one.
+end
