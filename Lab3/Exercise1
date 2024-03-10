@@ -1,0 +1,95 @@
+function [name, ufid, ...
+    A, rref_A, det_A, det_AT, ...
+    A1, b1, sol_1_partic, sol_1_matlab, sol_1_cramer, ...
+    A2, b2, sol_2_partic, sol_2_matlab, sol_2_cramer, ...
+    A3, b3, sol_3_partic, sol_3_matlab, sol_3_cramer] = Exercise1()
+    % --- Name & UFID --- %
+    name = "Nicholas Borden";
+    ufid = 46223988;
+
+    % --- Part A [10 Points] --- %
+    % (i) Some MATLAB implementation details...
+
+    % vvvvv COMMENT OUT BEFORE SUBMITTING vvvvv %
+    %n = randi([2500, 5000]);
+    %A = randi([-7,7], n, n);
+    %b = randi([-7,7], n, n);
+
+    %tic
+    %    A\b;
+    %toc;
+
+    %tic
+    %    inv(A) * b;
+    % toc;
+    % ^^^^^ COMMENT OUT BEFORE SUBMITTING ^^^^^ %
+
+    % (COMPARE BOTH & NOTE WHICH ONE IS FASTER & FIND OUT WHAT A\b ACTUALLY DOES)
+    %A\b is faster and more accurate than inv(A)*b becuase A\b uses more
+    %advanced algorithms that can deal with a wider range of systems. This
+    %means that A\b is optimized for different matrix types, while inv(a)*b
+    %explicitly calculates the inverse which is often more computationally
+    %taxing
+
+    %In general, the A\b command returns the solution x to the linear
+    %system Ax = b. This solution is determined in the most efficient and
+    %numerically stable manner by MATLAB which could be LU decomposition, 
+    %QR factorization, etc depending on A. 
+
+    % (ii) Some more practical things...
+    A = [1, 2, 3; -4, -5, -6; 7, 8, 9];
+    rref_A = rref(A);
+
+    % If rref of A does not have pivot positions in each row, A is not
+    % invertible.
+    % Therefore, the determinant of A is 0.
+
+    det_A = det(A);
+    %disp(det(sym(A))) % (COMMENT OUT BEFORE SUBMISSION!)
+
+    det_AT = det(A');
+
+    % The determinant of a matrix and its transpose are the same 
+    % det(A) = det(A^T))
+    % If A is not invertible, A^T will also not be invertible because
+    % det(A) = 0 so det(A^T) will also = 0
+
+    % --- Part B [10 Points] --- %
+    A1 = [1, 1, -2; 1, -2, 4; 0, 1, -2];
+    b1 = [1; -2; 3];
+
+    sol_1_partic = ParticularSolution(A1, b1);
+    sol_1_matlab = A1\b1;
+    sol_1_cramer = CramersRule3x3(A1, b1);
+
+    %The system is not consistent based on the empty sol_1_partic 
+    % (ParticularSolution function did not find solution), the NaN
+    % and Inf values in sol_1_matlab (MATLABs built-in solver resulted in 
+    % non-finite values, and the NaN in sol_1_cramer (determinant of A1 is 
+    % 0). 
+
+    % --- Part C [10 Points] --- %
+    A2 = [1, 1, -2; 1, -2, 4; 0, 1, -2];
+    b2 = [1; -2; 1];
+
+    sol_2_partic = ParticularSolution(A2, b2);
+    sol_2_matlab = A2\b2;
+    sol_2_cramer = CramersRule3x3(A2, b2);
+
+    % This system is consistent and has infinite solutions because the
+    % sol_2_partic gives you a solution which means there is at least one 
+    % solution and Cramers rule doesn't work which indicates there are
+    % either 0 or infinite solutions. Thus, there are infinite solutions. 
+    % x = [0; 2; 1; 0] + [0; 0; -1; 1] * t, t in R)
+   
+    % --- Part D [10 Points] --- %
+    A3 = [1, 1, -2; 1, -2, -2; 0, 1, 2];
+    b3 = [1; -2; 1];
+
+    sol_3_partic = ParticularSolution(A3, b3);
+    sol_3_matlab = A3\b3;
+    sol_3_cramer = CramersRule3x3(A3, b3);
+
+    % This system is consistent and the solution is [0, 1, 0] because 
+    % sol_3_partic, sol_3_matlab, and sol_3_cramer all returned this value 
+end
