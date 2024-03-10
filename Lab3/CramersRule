@@ -1,0 +1,30 @@
+function [x, name, ufid]  = CramersRule(A, b)
+    % Purpose: Solve the system Ax = b using Cramer's Rule for all squre
+    % matrices
+    % Input Argument [A]: Coefficient matrix A 
+    % Input Argument [b]: Column vector b
+    % Output Argument [x]: Solution vector x (returns NaN if A is singular
+    % or non-square)
+
+    % --- Name & UFID --- %
+    name = "Nicholas Borden";
+    ufid = 46223988;
+
+    [m, n] = size(A); % # of rows and columns of A, respectively
+
+    % Use CramersRule3x3.m as a guide to write this new function.
+    % Hint: Use a for-loop.
+
+    x = NaN;
+
+    if m~=n || abs(det(A)) <= 10^(-8)
+        return;
+    end
+
+    for i = 1:n
+        copyA = A;
+        copyA(:, i) = b;
+        x(i) = det(copyA) / det(A);
+    end
+    x = x';
+end
